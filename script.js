@@ -1,42 +1,44 @@
-let questions = [
-    {
-        "question": "Wer hat HTML erfunden?",
-        "answer_1": "Robbie Williams",
-        "answer_2": "Lady Gaga",
-        "answer_3": "Tim Berners-Lee",
-        "answer_4": "Justin Bieber",
-        "right_answer": 3
-    },
-    {
-        "question": "Wie wird ein Link in HTML erstellt?",
-        "answer_1": "Mit dem <a>-Tag",
-        "answer_2": "Mit dem <link>-Tag",
-        "answer_3": "Mit dem <img>-Tag",
-        "answer_4": "Mit dem <button>-Tag",
-        "right_answer": 1
-    },
-    {
-        "question": "Was ist der Zweck des <head>-Tags in HTML?",
-        "answer_1": "Um den Hauptinhalt der Webseite zu definieren",
-        "answer_2": "Um eine Liste von Links zur Verfügung zu stellen",
-        "answer_3": "Um Informationen über die Webseite bereitzustellen",
-        "answer_4": "Um das Layout der Webseite zu definieren",
-        "right_answer": 3
-    },
-    {
-        "question": "Wie erstellt man eine Liste in HTML?",
-        "answer_1": "Mit dem <list>-Tag",
-        "answer_2": "Mit dem <ul>-Tag",
-        "answer_3": "Mit dem <table>-Tag",
-        "answer_4": "Mit dem <form>-Tag",
-        "right_answer": 2
-    },
-    {
-        "question": "Wie fügt man ein Bild in eine HTML-Seite ein?",
-        "answer_1": "Mit dem <image>-Tag",
-        "answer_2": "Mit dem <img>-Tag",
-        "answer_3": "Mit dem <picture>-Tag",
-        "answer_4": "Mit dem <link>-Tag",
-        "right_answer": 2
+let currentQuestion = 0;
+
+function init() {
+    showCard(currentQuestion);
+}
+
+function showCard(currentQuestion) {
+    let card = document.getElementById('card');
+    card.innerHTML = '';
+
+    const question = questions[currentQuestion]['question'];
+    const answers = [
+        questions[currentQuestion]['answer_1'], 
+        questions[currentQuestion]['answer_2'], 
+        questions[currentQuestion]['answer_3'], 
+        questions[currentQuestion]['answer_4']
+    ];
+    const length = questions.length;
+
+    card.innerHTML += generateHTMLCardQuestion(question);
+    for (i = 0; i < answers.length; i++) {
+        const answerNumber = i + 1;
+        const answerString = answers[i];
+        card.innerHTML += generateHTMLCardAnswer(answerNumber, answerString);
+    };
+    card.innerHTML += generateHTMLCardFooter(currentQuestion, length);
+}
+
+function answerQuestion(question) {
+    let card = document.getElementById(`answer-${question}`);
+    const right_answer = questions[currentQuestion]['right_answer'];
+
+    if (question == right_answer) {
+        card.classList.add('quiz-answer-right');
+    } else {
+        card.classList.add('quiz-answer-wrong');
+        document.getElementById(`answer-${right_answer}`).classList.add('quiz-answer-right');
     }
-];
+}
+
+function nextQuestion() {
+    currentQuestion = currentQuestion + 1
+    showCard(currentQuestion);
+}
