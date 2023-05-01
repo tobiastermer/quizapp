@@ -5,7 +5,7 @@ body {
 
 .container {
     background-color: rgb(244, 237, 255) !important;
-    min-height: 100vh;
+    min-height: calc(100vh - 56px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,10 +34,20 @@ body {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.quiz-answer-right {
-    background-color: rgba(4, 194, 4, 0.5) !important;
+.bg-danger, .bg-success {
+    color: white !important;
 }
 
-.quiz-answer-wrong {
-    background-color: rgba(202, 46, 19, 0.5) !important;
+.fs-38 {
+    font-size: 38px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.button-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
 }
