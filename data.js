@@ -16,7 +16,7 @@ let questions = [
         "right_answer": 1
     },
     {
-        "question": "Was ist der Zweck des <head>-Tags in HTML?",
+        "question": "Was ist der Zweck des head-Tags in HTML?",
         "answer_1": "Um den Hauptinhalt der Webseite zu definieren",
         "answer_2": "Um eine Liste von Links zur Verfügung zu stellen",
         "answer_3": "Um Informationen über die Webseite bereitzustellen",

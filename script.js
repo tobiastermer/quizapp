@@ -1,6 +1,8 @@
 let currentQuestion = 0;
 let questionAnswered = false;
 let rightQuestions = 0;
+var audio_success = new Audio('./audio/right.mp3');
+var audio_fail = new Audio('./audio/wrong.mp3');
 
 function init() {
     showCard(currentQuestion);
@@ -8,45 +10,67 @@ function init() {
 
 function showCard(currentQuestion) {
     questionAnswered = false;
-
     let card = document.getElementById('card');
+    card.innerHTML = '';
+
+    showCardQuestion(card);
+    showCardAnswers(card);
+    showCardFooter(card);
+}
+
+function showCardQuestion(card) {
     const question = questions[currentQuestion]['question'];
+    card.innerHTML += generateHTMLCardQuestion(question);
+}
+
+function showCardAnswers(card) {
     const answers = [
-        questions[currentQuestion]['answer_1'],
-        questions[currentQuestion]['answer_2'],
-        questions[currentQuestion]['answer_3'],
+        questions[currentQuestion]['answer_1'], 
+        questions[currentQuestion]['answer_2'], 
+        questions[currentQuestion]['answer_3'], 
         questions[currentQuestion]['answer_4']
     ];
-    const length = questions.length;
 
-    // showProgressBar();
-
-    card.innerHTML = '';
-    card.innerHTML += generateHTMLCardQuestion(question);
     for (i = 0; i < answers.length; i++) {
         const answerNumber = i + 1;
         const answerString = answers[i];
         card.innerHTML += generateHTMLCardAnswer(answerNumber, answerString);
     };
-    card.innerHTML += generateHTMLCardFooter(currentQuestion, length);
 }
 
-function answerQuestion(answerNumber) {
-    let card = document.getElementById(`answer-${answerNumber}`);
-    const right_answer = questions[currentQuestion]['right_answer'];
+function showCardFooter(card) {
+    // const length = questions.length;
+    card.innerHTML += generateHTMLCardFooter(currentQuestion, questions.length);
+}
 
-    if (questionAnswered == false) {
-        if (answerNumber == right_answer) {
-            card.classList.add('bg-success');
-            rightQuestions++;
+function answerQuestion(givenAnswerNumber) {
+    const rightAnswerNumber = questions[currentQuestion]['right_answer'];
+    if (questionAnswered == false) { // wenn die aktuelle Frage noch nicht beantwortet worden ist (benötigt, um nach beantworteter Frage keine Aktionen mehr bei Klick auf Antworten auszulösen)
+        if (answerIsRight(givenAnswerNumber, rightAnswerNumber)) {
+            actionRightAnswer(givenAnswerNumber);
         } else {
-            card.classList.add('bg-danger');
-            document.getElementById(`answer-${right_answer}`).classList.add('bg-success');
+            actionWrongAnswer(givenAnswerNumber, rightAnswerNumber);
         }
         blockHoverEffects();
         document.getElementById('next-button').disabled = false;
         showProgressBar();
     }
+}
+
+function answerIsRight(givenAnswerNumber, rightAnswerNumber) {
+    return givenAnswerNumber == rightAnswerNumber;
+}
+
+function actionRightAnswer(givenAnswerNumber) {
+    document.getElementById(`answer-${givenAnswerNumber}`).classList.add('bg-success');
+    audio_success.play();
+    rightQuestions++;
+}
+
+function actionWrongAnswer(givenAnswerNumber, rightAnswerNumber) {
+    document.getElementById(`answer-${givenAnswerNumber}`).classList.add('bg-danger');
+    document.getElementById(`answer-${rightAnswerNumber}`).classList.add('bg-success');
+    audio_fail.play();
 }
 
 function blockHoverEffects() {
