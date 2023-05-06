@@ -8,7 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <script src="data.js"></script>
-    <script src="content.js"></script>
+    <script src="template.js"></script>
     <script src="script.js"></script>
     <link rel="icon" type="image/x-icon" href="./img/brain.png">
 
@@ -25,19 +25,58 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Quiz App</a>
+            <div class="dropdown desktop-hidden">
+                <button class="btn btn-navbar dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Kategorien
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">HTML</a></li>
+                    <li><a class="dropdown-item" href="#">CSS</a></li>
+                    <li><a class="dropdown-item" href="#">JavaScript</a></li>
+                    <li><a class="dropdown-item" href="#">Git</a></li>
+                </ul>
+            </div>
         </div>
+        
     </nav>
 
     <div class="container">
-        <div class="card quiz-card">
-            <img src="./img/background.jpg" class="card-img-top" id="card-image">
-            <div class="progress">
-                <div class="progress-bar" style="width: 0%" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                    aria-valuemax="100" id="progress-bar">0%</div>
-            </div>
-            <div class="card-body" id="card">
+
+        <div class="quiz-container">
+
+            <div class="card quiz-sidebar mobile-hidden">
+                <img src="./img/logo.png" class="card-img-top">
+
                 <!-- wird dynamisch befüllt -->
+                <ul class="nav flex-column" id="quiz-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">HTML</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CSS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">JavaScript</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Git</a>
+                    </li>
+                </ul>
+
             </div>
+
+            <div class="card quiz-card">
+                <img src="./img/background.jpg" class="card-img-top" id="card-image">
+                <div class="progress">
+                    <div class="progress-bar" style="width: 0%" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                        aria-valuemax="100" id="progress-bar">0%</div>
+                </div>
+                <div class="card-body" id="card">
+                    <!-- wird dynamisch befüllt -->
+                </div>
+            </div>
+
         </div>
     </div>
 
