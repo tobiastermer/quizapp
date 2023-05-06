@@ -19,11 +19,11 @@ let data = [
                 "right_answer": 1
             },
             {
-                "question": "Was ist der Zweck des head-Tags in HTML?",
-                "answer_1": "Um den Hauptinhalt der Webseite zu definieren",
-                "answer_2": "Um eine Liste von Links zur Verfügung zu stellen",
-                "answer_3": "Um Informationen über die Webseite bereitzustellen",
-                "answer_4": "Um das Layout der Webseite zu definieren",
+                "question": "Was ist der Zweck des head-Tags?",
+                "answer_1": "Den Hauptinhalt der Webseite definieren",
+                "answer_2": "Eine Liste von Links zur Verfügung stellen",
+                "answer_3": "Informationen über die Webseite bereitstellen",
+                "answer_4": "Das Layout der Webseite definieren",
                 "right_answer": 3
             },
             {
@@ -101,11 +101,11 @@ let data = [
                 "right_answer": 1
             },
             {
-                "question": "Was ist der Unterschied zwischen let und var in JavaScript?",
-                "answer_1": "Es gibt keinen Unterschied zwischen beiden",
+                "question": "Was unterscheidet let und var?",
+                "answer_1": "Es gibt keinen Unterschied",
                 "answer_2": "let deklariert eine Variable lokal, während var global deklariert",
                 "answer_3": "var deklariert eine Variable lokal, während let global deklariert",
-                "answer_4": "let ist veraltet und sollte nicht mehr verwendet werden",
+                "answer_4": "let ist veraltet, var ist modern",
                 "right_answer": 2
             },
             {
@@ -147,8 +147,8 @@ let data = [
             },
             {
                 "question": "Was ist der Unterschied zwischen Git und SVN?",
-                "answer_1": "Es gibt keinen Unterschied zwischen beiden",
-                "answer_2": "Git ist dezentralisiert, während SVN zentralisiert ist",
+                "answer_1": "Es gibt keinen Unterschied",
+                "answer_2": "Git ist dezentralisiert, SVN zentralisiert",
                 "answer_3": "SVN ist schneller als Git",
                 "answer_4": "Git unterstützt nur bestimmte Dateiformate",
                 "right_answer": 2
