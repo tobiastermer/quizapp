@@ -1,3 +1,4 @@
+let questions = [];
 let currentQuestion = 0;
 let questionAnswered = false;
 let rightQuestions = 0;
@@ -5,7 +6,37 @@ var audio_success = new Audio('./audio/right.mp3');
 var audio_fail = new Audio('./audio/wrong.mp3');
 
 function init() {
+    loadCategories();
+    showStartScreen();
+}
+
+function showStartScreen() {
+    resetGame();
+    document.getElementById('card-image').src = './img/start.jpg';
+    let card = document.getElementById('card');
+    card.innerHTML = '';
+    card.innerHTML += generateHTMLCardStartScreen();
+}
+
+function loadCategories() {
+    let navSidebar = document.getElementById('sidebar-categories');
+    let navHeader = document.getElementById('header-categories');
+    navSidebar.innerHTML = '';
+    navHeader.innerHTML = '';
+
+    for (i = 0; i < data.length; i++) {
+        const category = data[i]["category"];
+        navSidebar.innerHTML += generateHTMLAddCategorySidebar(i, category);
+        navHeader.innerHTML += generateHTMLAddCategoryHeader(i, category);
+    }
+}
+
+function chooseCategory(category) {
+    questions = data[category]["questions_and_answers"];
+    currentQuestion = 0;
+    document.getElementById('card-image').src = './img/background.jpg';
     showCard(currentQuestion);
+    showProgressBar();
 }
 
 function showCard(currentQuestion) {
@@ -39,7 +70,6 @@ function showCardAnswers(card) {
 }
 
 function showCardFooter(card) {
-    // const length = questions.length;
     card.innerHTML += generateHTMLCardFooter(currentQuestion, questions.length);
 }
 
@@ -100,17 +130,24 @@ function showProgressBar() {
     let progress;
     if (questionAnswered == true) {
         progress = Math.round((currentQuestion + 1) / questions.length * 100);
-    } else {
+    } else if (questionAnswered == false && questions.length > 0) {
         progress = Math.round((currentQuestion) / questions.length * 100);
+    } else {
+        progress = 0;
     }
     document.getElementById('progress-bar').style = `width: ${progress}%`;
     document.getElementById('progress-bar').innerHTML = `${progress}%`;
 }
 
 function restartGame() {
-    currentQuestion = 0;
-    rightQuestions = 0;
+    resetGame();
     document.getElementById('card-image').src = './img/background.jpg';
     showCard(currentQuestion);
+}
+
+function resetGame() {
+    questionAnswered = false;
+    currentQuestion = 0;
+    rightQuestions = 0;
     showProgressBar();
 }

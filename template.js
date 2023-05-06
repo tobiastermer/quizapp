@@ -1,3 +1,18 @@
+function generateHTMLAddCategorySidebar(i, category) {
+    return `<li class="nav-item">
+                <a onclick="chooseCategory(${i}); return false" class="nav-link active" href="#">${category}</a>
+            </li>`
+}
+
+function generateHTMLCardStartScreen() {
+    return `<div class="fs-38 text-center">Herzlich Willkommen!</div>
+            <p class="text-center">Bitte wähle eine Kategorie aus, um das Quiz zu starten.</p>`
+}
+
+function generateHTMLAddCategoryHeader(i, category) {
+    return `<li><a onclick="chooseCategory(${i}); return false" class="dropdown-item" href="#">${category}</a></li>`
+}
+
 function generateHTMLCardQuestion(question) {
     return `<h5 class="card-title">${question}</h5>`
 }
